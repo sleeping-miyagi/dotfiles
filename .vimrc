@@ -48,9 +48,6 @@ imap <C-S> <Plug>BujoAddinsert
 nmap <C-Q> <Plug>BujoChecknormal
 imap <C-Q> <Plug>BujoCheckinsert
 
-" macros
-let @s = 'i---fontsize: 12ptindent: truegeometry: margin=1inheader-includes: |	\usepackage{fancyhdr}	\fancyhead[L]{Jose Alessandro Tababa}\fancyhead[R]{January 1, 2000}\fancyfoot[L]{FILM 100}€kb\usepackage{setspace}	\doublespacing€kb€kb---€ýa '
-
 " plugin settings
 colorscheme gruvbox
 au BufRead,BufNewFile *.fountain set filetype=fountain
