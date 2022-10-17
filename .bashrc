@@ -40,12 +40,12 @@ export BTPD_HOME=$HOME/.config/btpd
 export LIBBY_OUTPUT_DIR=~/documents/library
 
 # aliases
-alias btadd='btcli add -d /mnt/media/torrents -T'
+alias btadd='btcli add -d /mnt/media/torrent -T'
 alias n='n -redx'
 alias N='sudo -E nnn -dH'
 alias ls='ls --color=auto'
-alias ssgr='rssg src/articles/index.md 'maky.me' > src/articles/rss.xml'
-alias ssgm='rm -rf dst/.files dst/* && rssg src/articles/index.md 'maky.me' > src/articles/rss.xml && ssg src dst 'maky.me' 'https://maky.me''
+alias ssgr='rssg src/blog/index.md 'maky.me' > src/blog/rss.xml'
+alias ssgm='rm -rf dst/.files dst/* && rssg src/blog/index.md 'maky.me' > src/blog/rss.xml && ssg src dst 'maky.me' 'https://maky.me''
 alias ssgd='rsync -rvh dst/ lain@maky.me:/var/www/maky.me --delete'
 alias todo='vim ~/documents/todo.txt'
 alias tuir='tuir --enable-media'
