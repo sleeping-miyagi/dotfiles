@@ -41,6 +41,7 @@ set showtabline=1
 filetype plugin indent on
 
 " keybindings
+nmap <space> za
 nmap <F3> :Goyo<CR>
 nmap <F4> :Pandoc pdf --citeproc<CR>
 nmap <C-S> <Plug>BujoAddnormal
@@ -53,3 +54,5 @@ colorscheme gruvbox
 au BufRead,BufNewFile *.fountain set filetype=fountain
 let g:todo_done_filename = 'done.txt'
 let g:airline#extensions#wordcount#filetypes = '\vasciidoc|help|mail|markdown|markdown.pandoc|pandoc|org|rst|tex|text'
+" let g:pandoc#modules#disabled = ["folding"]
+" let g:pandoc#folding#markers_in_comments_only

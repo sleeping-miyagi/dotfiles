@@ -33,12 +33,12 @@ order += "tztime local"
 
 wireless _first_ {
         format_up = "直 %ip"
-        format_down = "睊 disconnected"
+        format_down = "睊 no connection"
 }
 
 ethernet _first_ {
         format_up = "<span color='#ebdbb2'> %ip</span>"
-        format_down = " disconnected"
+        format_down = " no connection"
 }
 
 battery all {

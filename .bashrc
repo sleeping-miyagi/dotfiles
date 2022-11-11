@@ -27,7 +27,7 @@ trap nnn_cd EXIT
 [[ -n "$NNNLVL" ]] && PS1="N$NNNLVL $PS1"
 
 ## assign plugins (https://github.com/jarun/nnn/tree/master/plugins#configuration)
-export NNN_PLUG='b:renamer;s:subshell;i:imgview;u:buttplug;m:mtpmount'
+export NNN_PLUG='b:renamer;s:subshell;i:imgview;u:buttplug;m:nmount;f:xdgdefault'
 
 ## hidden files on top (https://github.com/jarun/nnn/wiki/Basic-use-cases#hidden-files-on-top)
 export LC_COLLATE="C"
@@ -38,6 +38,7 @@ export EDITOR=vim
 export PATH=/usr/local/sbin:/usr/local/bin:/usr/bin:/var/lib/flatpak/exports/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:$HOME/.local/bin
 export BTPD_HOME=$HOME/.config/btpd
 export LIBBY_OUTPUT_DIR=~/documents/library
+export BROWSER=firefox
 
 # aliases
 alias btadd='btcli add -d /mnt/media/torrent -T'

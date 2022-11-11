@@ -1,9 +1,13 @@
 #!/usr/bin/env sh
 
-# Description: Update nnn plugins to installed nnn version
-#
-# Shell: POSIX compliant
-# Authors: Arun Prakash Jana, KlzXS
+# Original Description:
+### Description: Update nnn plugins to installed nnn version
+###
+### Shell: POSIX compliant
+### Authors: Arun Prakash Jana, KlzXS
+##
+# This shell script has been modified by sleeping-miyagi.
+# This script now deletes plugins not set in your .bashrc.
 
 CONFIG_DIR=${XDG_CONFIG_HOME:-$HOME/.config}/nnn/
 PLUGIN_DIR=${XDG_CONFIG_HOME:-$HOME/.config}/nnn/plugins
