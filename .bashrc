@@ -32,13 +32,18 @@ export NNN_PLUG='b:renamer;s:subshell;i:imgview;u:buttplug;m:nmount;f:xdgdefault
 ## hidden files on top (https://github.com/jarun/nnn/wiki/Basic-use-cases#hidden-files-on-top)
 export LC_COLLATE="C"
 
+## enable trash and add bookmarks (https://github.com/jarun/nnn/wiki/Usage)
+export NNN_TRASH=1
+export NNN_BMS="b:/mnt/media;d:$HOME/documents;D:$HOME/downloads;h:$HOME"
+
 # environment variables
 export TERM=st-256color
 export EDITOR=vim
-export PATH=/usr/local/sbin:/usr/local/bin:/usr/bin:/var/lib/flatpak/exports/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:$HOME/.local/bin
+#export PATH=/usr/local/sbin:/usr/local/bin:/usr/bin:/var/lib/flatpak/exports/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:$HOME/.local/bin
 export BTPD_HOME=$HOME/.config/btpd
 export LIBBY_OUTPUT_DIR=~/documents/library
 export BROWSER=firefox
+export PATH="${PATH}":$HOME/.local/bin
 
 # aliases
 alias btadd='btcli add -d /mnt/media/torrent -T'
@@ -52,3 +57,5 @@ alias todo='vim ~/documents/todo.txt'
 alias tuir='tuir --enable-media'
 alias yt='ytfzf -tc yt'
 alias sci='scitopdf -D ~/documents/library -u sci-hub.ru'
+alias yay='paru'
+alias bookmarks='vim ~/.local/share/bookmarks'

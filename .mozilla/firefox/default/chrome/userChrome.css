@@ -14,7 +14,7 @@
 
 :root {
   --tab-font-size: 0.8em; /* Font size of the tab labels */
-  --tab-font-family: DejaVu Sans Mono; /* The font used for the tab labels */
+  --tab-font-family: Noto Sans Mono; /* The font used for the tab labels */
   --max-tab-width: none; /* The maximum width a tab in the tab bar can use. Set this to none for no limit */
 }
 

@@ -213,8 +213,10 @@ client.urgent           $red $red $gray $red $red
 default_border pixel
 default_floating_border pixel
 
-# this is necessary after the border bug of 4.21
-for_window [all] border pixel 
+# This was needed for a border bug in v4.21 but it was fixed since. However,
+# it is useful if you wish to force a border on ALL windows including those
+# that don't normally need focus borders.
+# for_window [all] border pixel 
 
 # startup
 exec --no-startup-id xset s 120 120
@@ -227,9 +229,12 @@ exec --no-startup-id xrandr --output HDMI-0 --mode 1920x1080 --rate 144
 exec --no-startup-id dunst
 
 # keybindings
-bindsym Print exec --no-startup-id maim --format=webp ~/pictures/screenshots/$(date +%F-%T).webp
-bindsym $mod+Shift+End exec --no-startup-id maim -s --format=webp ~/pictures/screenshots/$(date +%F-%T).webp
+bindsym Print exec --no-startup-id maim --format=webp ~/pictures/screenshots/$(date '+%Y-%m-%d_%H-%M-%S').webp
+bindsym $mod+Shift+End exec --no-startup-id maim -s --format=webp ~/pictures/screenshots/$(date '+%Y-%m-%d_%H-%M-%S').webp
 bindsym $mod+b exec --no-startup-id firefox -p
 bindsym --release $mod+Shift+x exec --no-startup-id xkill
 bindsym $mod+y exec --no-startup-id ytfzf -Dc yt
 bindsym $mod+p exec --no-startup-id passmenu
+# bindsym $mod+i exec --no-startup-id xdotool type $(grep -v '^#' ~/.local/share/bookmarks | dmenu -i -l 50 | cut -d' ' -f1)
+bindsym $mod+i exec --no-startup-id xdg-open $(grep -v '^#' ~/.local/share/bookmarks | dmenu -i -l 50 | cut -d'|' -f2)
+bindsym $mod+g exec --no-startup-id dmenu-websearch

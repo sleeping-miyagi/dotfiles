@@ -28,3 +28,21 @@
 *color7:  #a89984
 *color15: #ebdbb2
 
+! rxvt-unicode config
+
+! URxvt*scrollTtyOutput: false
+URxvt*scrollWithBuffer: true
+URxvt*scrollTtyKeypress: true
+
+URxvt.font: xft:Fantasque Sans Mono Nerd Font:size=12
+
+! xterm config
+
+XTerm.termName: xterm-256color
+XTerm.vt100.locale: true
+XTerm.vt100.metaSendsEscape: true
+XTerm.vt100.saveLines: 4096
+XTerm.vt100.faceName: Fantasque Sans Mono Nerd Font:size=12:antialias=true
+! XTerm.vt100.faceNameDoublesize: Fantasque Sans Mono Nerd Font:size=12:antialias=true
+!XTerm.vt100.faceName: icons\-in\-terminal:size=12
+! XTerm.vt100.font: 7x13
