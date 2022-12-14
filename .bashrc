@@ -34,7 +34,7 @@ export LC_COLLATE="C"
 
 ## enable trash and add bookmarks (https://github.com/jarun/nnn/wiki/Usage)
 export NNN_TRASH=1
-export NNN_BMS="b:/mnt/media;d:$HOME/documents;D:$HOME/downloads;h:$HOME"
+export NNN_BMS="b:/mnt/media;d:$HOME/documents;D:$HOME/downloads;h:$HOME;s:$HOME/pictures/screenshots"
 
 # environment variables
 export TERM=st-256color
@@ -59,3 +59,4 @@ alias yt='ytfzf -tc yt'
 alias sci='scitopdf -D ~/documents/library -u sci-hub.ru'
 alias yay='paru'
 alias bookmarks='vim ~/.local/share/bookmarks'
+alias notes='vim ~/documents/notes.md'
