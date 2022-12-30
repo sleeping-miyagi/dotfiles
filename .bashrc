@@ -36,6 +36,19 @@ export LC_COLLATE="C"
 export NNN_TRASH=1
 export NNN_BMS="b:/mnt/media;d:$HOME/documents;D:$HOME/downloads;h:$HOME;s:$HOME/pictures/screenshots"
 
+# transfer.sh
+transfer(){
+    if [ $# -eq 0 ];then echo "No arguments specified.\nUsage:\n  transfer <file|directory>\n  ... | transfer <file_name>">&2;return 1;fi;if tty -s;then file="$1";file_name=$(basename "$file");if [ ! -e "$file" ];then echo "$file: No such file or directory">&2;return 1;fi;if [ -d "$file" ];then file_name="$file_name.zip" ,;(cd "$file"&&zip -r -q - .)|curl --progress-bar --upload-file "-" "https://transfer.sh/$file_name"|tee /dev/null,;else cat "$file"|curl --progress-bar --upload-file "-" "https://transfer.sh/$file_name"|tee /dev/null;fi;else file_name=$1;curl --progress-bar --upload-file "-" "https://transfer.sh/$file_name"|tee /dev/null;fi;}
+
+# flac2opus beet import
+flac2opus() {
+    for file in *.flac; do
+        ffmpeg -i "${file}" -b:a 128k -vbr on "${file}".opus
+    done
+    
+    rm *.flac && beet update && beet import .
+}
+
 # environment variables
 export TERM=st-256color
 export EDITOR=vim
@@ -53,6 +66,7 @@ alias ls='ls --color=auto'
 alias ssgr='rssg src/blog/index.md 'maky.me' > src/blog/rss.xml'
 alias ssgm='rm -rf dst/.files dst/* && rssg src/blog/index.md 'maky.me' > src/blog/rss.xml && ssg src dst 'maky.me' 'https://maky.me''
 alias ssgd='rsync -rvh dst/ lain@maky.me:/var/www/maky.me --delete'
+alias deploy='rsync -rvh _public/ lain@maky.me:/var/www/maky.me --delete'
 alias todo='vim ~/documents/todo.txt'
 alias tuir='tuir --enable-media'
 alias yt='ytfzf -tc yt'

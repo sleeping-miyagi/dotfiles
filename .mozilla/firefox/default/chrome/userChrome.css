@@ -6,6 +6,7 @@
  | |  | | | | | | | | | | | | | | | | | (_| |
  |_|  |_| |_| |_| |_| |_| |_| |_| |_|  \__,_|
                                             
+
 */
 
 
@@ -16,7 +17,7 @@
 	--tab-font-family: Noto Sans Mono; /* The font used for the tab labels */
 	--max-tab-width: none; /* The maximum width a tab in the tab bar can use. Set this to none for no limit */
 	--show-titlebar-buttons: none; /* Hide the buttons (close/minimize/maximize) in the title bar. Required on some platforms (e.g macOS) to fully hide the title bar. `none` hides them, `block` shows them */
-	--tab-height: 15px;
+	--tab-height: 16px;
 }
 
 /* Minima Source Code. Here be dragons. */
@@ -45,14 +46,14 @@
 .tabbrowser-tab[fadein]:not([pinned]) {
 	max-width: var(--max-tab-width) !important;
 }
-.tab-close-button, .new-tab-button, #firefox-view-button, #scrollbutton-up {
+.tab-close-button, .new-tab-button, #firefox-view-button, #scrollbutton-up, .tab-secondary-label {
 	display: none !important;
 }
-.tab-icon-image {
-	height: auto !important;
-	width: calc(var(--tab-height) / 1.5) !important;
+/*.tab-icon-image {
+    height: auto !important;
+    width: calc(var(--tab-height) / 1.5) !important;
 	margin-right: 4px !important;
-}
+} */ /** Removed. See changes below. **/
 
 #tabs-newtab-button, #titlebar spacer {
 	display: none !important;
@@ -156,11 +157,17 @@ See the above repository for updates as well as full license text. */
     counter-increment: nth-tab
 }
 
-/** move status panel to the right **/
+/** move status panel to the right so that it doesn't obstruct tridactyl **/
 
 #statuspanel {
     margin: 0 !important;
     right: 38px !important;
     left: auto! important;
+}
+
+/** make height and width default so that playing sound doesn't mess up favicons **/
+
+.tab-icon-image {
+	margin-right: 4px !important;
 }
 
