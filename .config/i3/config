@@ -43,8 +43,8 @@ floating_modifier $mod
 
 # start a terminal
 bindsym $mod+Return exec --no-startup-id st
-bindsym $mod+Shift+Return exec --no-startup-id st -c floatingst
-for_window [class="^floatingst$"] floating enable
+bindsym $mod+Shift+Return exec --no-startup-id st -c floatingterm
+for_window [class="^floatingterm$"] floating enable
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -226,7 +226,7 @@ exec --no-startup-id xiccd
 exec --no-startup-id feh --no-fehbg --bg-fill ~/pictures/wp/default.png
 exec --no-startup-id ibus-daemon -drxR
 exec --no-startup-id lxpolkit
-exec --no-startup-id xrandr --output HDMI-0 --mode 1920x1080 --rate 144
+exec --no-startup-id xrandr --output HDMI-0 --mode 1920x1080 --rate 120
 exec --no-startup-id dunst
 
 # keybindings

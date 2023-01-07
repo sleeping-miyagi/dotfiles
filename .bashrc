@@ -50,11 +50,8 @@ flac2opus() {
 }
 
 # environment variables
-export TERM=st-256color
+#export TERM=st-256color
 export EDITOR=vim
-#export PATH=/usr/local/sbin:/usr/local/bin:/usr/bin:/var/lib/flatpak/exports/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:$HOME/.local/bin
-export BTPD_HOME=$HOME/.config/btpd
-export LIBBY_OUTPUT_DIR=~/documents/library
 export BROWSER=firefox
 export PATH="${PATH}":$HOME/.local/bin
 
@@ -68,9 +65,8 @@ alias ssgm='rm -rf dst/.files dst/* && rssg src/blog/index.md 'maky.me' > src/bl
 alias ssgd='rsync -rvh dst/ lain@maky.me:/var/www/maky.me --delete'
 alias deploy='rsync -rvh _public/ lain@maky.me:/var/www/maky.me --delete'
 alias todo='vim ~/documents/todo.txt'
-alias tuir='tuir --enable-media'
 alias yt='ytfzf -tc yt'
-alias sci='scitopdf -D ~/documents/library -u sci-hub.ru'
 alias yay='paru'
 alias bookmarks='vim ~/.local/share/bookmarks'
 alias notes='vim ~/documents/notes.md'
+alias translate='trans'
