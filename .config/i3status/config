@@ -1,0 +1,90 @@
+# i3status configuration file.
+# see "man i3status" for documentation.
+
+# It is important that this file is edited as UTF-8.
+# The following line should contain a sharp s:
+# ß
+# If the above line is not correctly displayed, fix your editor first!
+
+general {
+        colors = true
+        color_good = "#98971a"
+        color_degraded = "#d79921"
+        color_bad = "#cc241d"
+        # color_good = "#ebdbb2"
+        # color_degraded = "#ebdbb2"
+        # color_bad = "#ebdbb2"
+        interval = 5
+        separator = ""
+        markup = "pango"
+}
+
+# order+= "wireless _first_"
+order += "ethernet _first_"
+# order+= "battery all"
+# order += "load"
+order += "cpu_usage"
+order += "cpu_temperature 0"
+order += "memory"
+order += "disk /"
+order += "disk /data"
+order += "volume master"
+order += "tztime local"
+
+wireless _first_ {
+        format_up = "󰖩 %ip"
+        format_down = "󰖪 no connection"
+}
+
+ethernet _first_ {
+        format_up = "<span color='#ebdbb2'>󰈀 %ip</span>"
+        format_down = "󰈀 no connection"
+}
+
+battery all {
+        format = "%status %percentage %remaining"
+}
+
+disk "/" {
+        format = "<span color='#689d6a'>󰋊 %avail</span>"
+}
+
+disk "/data" {
+        format = "<span color='#458588'>󰋊 %avail</span>"
+}
+
+load {
+        format = "󰇅 %1min"
+}
+
+cpu_usage {
+    format = "󰇅 %usage"
+    max_threshold = 75
+    degraded_threshold = 25
+}
+
+# look for temp1_input under /sys/devices/platform/coretemp.0
+cpu_temperature 0 {
+    format = " %degrees°C"
+    max_threshold = 80
+    path = "/sys/devices/platform/coretemp.0/hwmon/hwmon1/temp1_input"
+}
+
+volume master {
+    format = "<span color='#b16286'>󰕾 %volume</span>"
+    format_muted = "<span color='#cc241d'>󰝟 %volume</span>"
+    device = "default"
+    mixer = "Master"
+    mixer_idx = 0
+}
+
+memory {
+        format = "󰍛 %percentage_used"
+        threshold_degraded = "80%"
+        threshold_critical= "20%"
+        # format_degraded = "[󰍛 mem < %available]"
+}
+
+tztime local {
+        format = "<span color='#ebdbb2'>󰸘 %a %Y-%m-%d %H:%M:%S</span>"
+}
