@@ -1,0 +1,8 @@
+#!/bin/sh
+
+echo "Updating the yadm repo origin URL"
+yadm remote set-url origin "git@github.com:sleeping-miyagi/dotfiles.git"
+
+echo "Installing default apps and programs"
+sudo apt update
+sudo apt install xinit pipewire i3 vim 
