@@ -46,4 +46,4 @@ export XMODIFIERS=@im=fcitx
 
 # disable mouse acceleration and start i3
 #xinput --set-prop 9 'libinput Accel Profile Enabled' 0, 1
-#exec i3
+exec i3

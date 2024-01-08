@@ -1,8 +1,37 @@
 #!/bin/sh
 
+export DEBIAN_CODENAME=$( . /etc/os-release && echo $VERSION_CODENAME )
+echo "deb http://deb.debian.org/debian ${DEBIAN_CODENAME}-backports main" | sudo tee /etc/apt/sources.list.d/${DEBIAN_CODENAME}-backports.list
+
 echo "Updating the yadm repo origin URL"
 yadm remote set-url origin "git@github.com:sleeping-miyagi/dotfiles.git"
 
-echo "Installing default apps and programs"
+echo "Installing i3"
 sudo apt update
-sudo apt install xinit pipewire i3 vim 
+sudo apt upgrade
+sudo apt install xinit pipewire i3 -y
+
+echo "Installing background services"
+sudo apt install dex dunst feh -y
+
+echo "Installing system utilities"
+sudo apt install pavucontrol arandr xclip -y
+
+echo "Installing default apps and programs"
+sudo apt install vim chromium webext-ublock-origin-chromium/${DEBIAN_CODENAME}-backports nnn sxiv zathura xournal mpv yt-dlp/${DEBIAN_CODENAME}-backports mutt-wizard -y
+
+echo "Building st"
+sudo apt install libharfbuzz-dev libxft-dev libxext-dev build-essential -y
+git clone https://github.com/sleeping-miyagi/st
+cd st
+sudo make install
+cd ..
+rm -rf st
+
+echo "Building dmenu"
+sudo apt install libxinerama-dev -y
+git clone https://github.com/sleeping-miyagi/dmenu
+cd dmenu
+sudo make install
+cd ..
+rm -rf dmenu

@@ -20,7 +20,7 @@
 
 ! font config
 !! *font: FantasqueSansMono Nerd Font:pixelsize=16:antialias=true:autohint=true;
-*font: FantasqueSansM Nerd Font:pixelsize=16:antialias=true:autohint=true;
+*font: Fantasque Sans Mono:pixelsize=16:antialias=true:autohint=true;
 
 ! st config
 st.borderpx: 10
