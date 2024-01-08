@@ -1,26 +1,33 @@
 #!/bin/sh
 
+# This bootstrap is suitable Debian 12
+#
+
+# Add Debian backports
 export DEBIAN_CODENAME=$( . /etc/os-release && echo $VERSION_CODENAME )
 echo "deb http://deb.debian.org/debian ${DEBIAN_CODENAME}-backports main" | sudo tee /etc/apt/sources.list.d/${DEBIAN_CODENAME}-backports.list
 
-echo "Updating the yadm repo origin URL"
+# Update yadm repo origin URL
 yadm remote set-url origin "git@github.com:sleeping-miyagi/dotfiles.git"
 
-echo "Installing i3"
+# Install window manager, sound server, display server
 sudo apt update
 sudo apt upgrade
 sudo apt install xinit pipewire i3 -y
 
-echo "Installing background services"
+# Install fonts
+sudo apt install fonts-noto fonts-fantasque-sans
+
+# Install background services
 sudo apt install dex dunst feh -y
 
-echo "Installing system utilities"
-sudo apt install pavucontrol arandr xclip -y
+# Install additional system utilities
+sudo apt install pavucontrol arandr xclip htop neofetch -y
 
-echo "Installing default apps and programs"
-sudo apt install vim chromium webext-ublock-origin-chromium/${DEBIAN_CODENAME}-backports nnn sxiv zathura xournal mpv yt-dlp/${DEBIAN_CODENAME}-backports mutt-wizard -y
+# Install apps and programs
+sudo apt install vim chromium webext-ublock-origin-chromium  nnn sxiv zathura xournal mpv yt-dlp/${DEBIAN_CODENAME}-backports mutt-wizard -y
 
-echo "Building st"
+# Build custom st
 sudo apt install libharfbuzz-dev libxft-dev libxext-dev build-essential -y
 git clone https://github.com/sleeping-miyagi/st
 cd st
@@ -28,7 +35,7 @@ sudo make install
 cd ..
 rm -rf st
 
-echo "Building dmenu"
+# Build custom dmenu
 sudo apt install libxinerama-dev -y
 git clone https://github.com/sleeping-miyagi/dmenu
 cd dmenu
