@@ -27,7 +27,7 @@ sudo apt install fonts-noto fonts-fantasque-sans fonts-liberation2 -y
 sudo apt install dex dunst feh xsettingsd gnome-themes-extra lxpolkit -y
 
 # Install additional system utilities.
-sudo apt install pavucontrol arandr xclip maim htop neofetch rclone fcitx5 fcitx5-mozc zenity -y
+sudo apt install pavucontrol arandr xclip maim htop neofetch rclone fcitx5 fcitx5-mozc -y
 
 # Install flatpak and flatpak repo
 sudo apt install flatpak
@@ -79,3 +79,7 @@ if ! grep -Fxq "$PAMGNUPGLINE2" $PAMDLOGIN
 then
     echo "$PAMGNUPGLINE2" | sudo tee -a $PAMDLOGIN
 fi
+
+# Set dark mode (GTK)
+sudo apt install dconf-cli
+dconf write /org/gnome/desktop/interface/color-scheme \'prefer-dark\'
