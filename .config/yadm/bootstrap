@@ -34,7 +34,7 @@ sudo apt install flatpak
 flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 
 # Install apps and programs.
-sudo apt install pass vim firefox-esr webext-ublock-origin-firefox nnn sxiv zathura xournal mpv yt-dlp/${DEBIAN_CODENAME}-backports ytfzf mutt-wizard pandoc texlive-xetex cmus -y
+sudo apt install pass vim firefox-esr webext-ublock-origin-firefox nnn sxiv zathura xournal mpv yt-dlp/${DEBIAN_CODENAME}-backports ytfzf mutt-wizard pandoc texlive-xetex cmus gcal qalc -y
 
 # Add home directories
 mkdir -p ~/documents ~/downloads ~/music ~/pictures ~/videos ~/public
@@ -79,3 +79,5 @@ if ! grep -Fxq "$PAMGNUPGLINE2" $PAMDLOGIN
 then
     echo "$PAMGNUPGLINE2" | sudo tee -a $PAMDLOGIN
 fi
+
+# Add user.js profile and firefox-minima to Firefox
