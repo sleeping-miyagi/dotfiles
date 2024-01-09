@@ -10,6 +10,9 @@ echo "deb http://deb.debian.org/debian ${DEBIAN_CODENAME}-backports main" | sudo
 # Update yadm repo origin URL.
 yadm remote set-url origin "git@github.com:sleeping-miyagi/dotfiles.git"
 
+# Add home directories
+mkdir -p ~/documents ~/downloads ~/music ~/pictures ~/videos ~/public
+
 # Install window manager, sound server, display server.
 sudo apt update
 sudo apt upgrade
