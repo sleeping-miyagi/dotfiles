@@ -10,12 +10,14 @@ echo "deb http://deb.debian.org/debian ${DEBIAN_CODENAME}-backports main" | sudo
 # Update yadm repo origin URL.
 yadm remote set-url origin "git@github.com:sleeping-miyagi/dotfiles.git"
 
-# Add home directories
-mkdir -p ~/documents ~/downloads ~/music ~/pictures ~/videos ~/public
+# Add contrib and non-free-firmware repositories
+sudo apt update -y
+sudo apt upgrade -y
+sudo apt install software-properties-common -y
+sudo apt-add-repository contrib non-free-firmware -y
+sudo apt update
 
 # Install window manager, sound server, display server.
-sudo apt update
-sudo apt upgrade
 sudo apt install xinit pipewire i3 -y
 
 # Install fonts.
@@ -33,6 +35,9 @@ flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.f
 
 # Install apps and programs.
 sudo apt install pass vim chromium webext-ublock-origin-chromium nnn sxiv zathura xournal mpv yt-dlp/${DEBIAN_CODENAME}-backports ytfzf mutt-wizard pandoc texlive-xetex cmus -y
+
+# Add home directories
+mkdir -p ~/documents ~/downloads ~/music ~/pictures ~/videos ~/public
 
 # Build and install custom st.
 sudo apt install libharfbuzz-dev libxft-dev libxext-dev build-essential -y
