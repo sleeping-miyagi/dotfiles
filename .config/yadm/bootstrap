@@ -22,7 +22,7 @@ sudo apt install fonts-noto fonts-fantasque-sans fonts-liberation2 -y
 sudo apt install dex dunst feh xsettingsd gnome-themes-extra lxpolkit -y
 
 # Install additional system utilities.
-sudo apt install pavucontrol arandr xclip maim htop neofetch rclone fcitx5 -y
+sudo apt install pavucontrol arandr xclip maim htop neofetch rclone fcitx5 fcitx5-mozc zenity -y
 
 # Install flatpak and flatpak repo
 sudo apt install flatpak
