@@ -3,6 +3,9 @@
 # This bootstrap is suitable for Debian 12.
 #
 
+# Add home directories
+mkdir -p ~/documents ~/downloads ~/music ~/pictures ~/videos ~/public
+
 # Add Debian backports.
 export DEBIAN_CODENAME=$( . /etc/os-release && echo $VERSION_CODENAME )
 echo "deb http://deb.debian.org/debian ${DEBIAN_CODENAME}-backports main" | sudo tee /etc/apt/sources.list.d/${DEBIAN_CODENAME}-backports.list
@@ -35,9 +38,6 @@ flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.f
 
 # Install apps and programs.
 sudo apt install pass vim firefox-esr webext-ublock-origin-firefox nnn sxiv zathura xournal mpv yt-dlp/${DEBIAN_CODENAME}-backports ytfzf mutt-wizard pandoc texlive-xetex cmus gcal qalc -y
-
-# Add home directories
-mkdir -p ~/documents ~/downloads ~/music ~/pictures ~/videos ~/public
 
 # Build and install custom st.
 sudo apt install libharfbuzz-dev libxft-dev libxext-dev build-essential -y
