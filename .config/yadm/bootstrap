@@ -19,17 +19,17 @@ sudo apt install xinit pipewire i3 -y
 sudo apt install fonts-noto fonts-fantasque-sans fonts-liberation2 -y
 
 # Install background services.
-sudo apt install dex dunst feh lxpolkit -y
+sudo apt install dex dunst feh xsettingsd gnome-themes-extra lxpolkit -y
 
 # Install additional system utilities.
-sudo apt install pavucontrol arandr xclip maim htop neofetch -y
+sudo apt install pavucontrol arandr xclip maim htop neofetch rclone fcitx5 -y
 
 # Install flatpak and flatpak repo
 sudo apt install flatpak
 flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 
 # Install apps and programs.
-sudo apt install pass vim chromium webext-ublock-origin-chromium nnn sxiv zathura xournal mpv yt-dlp/${DEBIAN_CODENAME}-backports ytfzf mutt-wizard pandoc texlive-xetex y
+sudo apt install pass vim chromium webext-ublock-origin-chromium nnn sxiv zathura xournal mpv yt-dlp/${DEBIAN_CODENAME}-backports ytfzf mutt-wizard pandoc texlive-xetex cmus -y
 
 # Build and install custom st.
 sudo apt install libharfbuzz-dev libxft-dev libxext-dev build-essential -y
@@ -48,7 +48,7 @@ cd ..
 rm -rf dmenu
 
 # Build and install pam_gnupg
-sudo apt install automake libtool libpam0g-dev
+sudo apt install automake libtool libpam0g-dev -y
 git clone https://github.com/cruegge/pam-gnupg
 cd pam-gnupg
 ./autogen.sh
@@ -57,3 +57,17 @@ make
 sudo make install
 cd ..
 rm -rf pam-gnupg
+
+PAMDLOGIN="/etc/pam.d/login"
+PAMGNUPGLINE1="auth     optional  pam_gnupg.so store-only"
+PAMGNUPGLINE2="session  optional  pam_gnupg.so"
+
+if ! grep -Fxq "$PAMGNUPGLINE1" $PAMDLOGIN
+then
+    echo "$PAMGNUPGLINE1" | sudo tee -a $PAMDLOGIN
+fi
+
+if ! grep -Fxq "$PAMGNUPGLINE2" $PAMDLOGIN
+then
+    echo "$PAMGNUPGLINE2" | sudo tee -a $PAMDLOGIN
+fi
