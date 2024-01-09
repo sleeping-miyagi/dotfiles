@@ -46,4 +46,5 @@ export XMODIFIERS=@im=fcitx
 
 # disable mouse acceleration and start i3
 #xinput --set-prop 9 'libinput Accel Profile Enabled' 0, 1
+dbus-update-activation-environment --systemd DBUS_SESSION_BUS_ADDRESS DISPLAY XAUTHORITY
 exec i3

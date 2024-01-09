@@ -1,33 +1,37 @@
 #!/bin/sh
 
-# This bootstrap is suitable Debian 12
+# This bootstrap is suitable for Debian 12.
 #
 
-# Add Debian backports
+# Add Debian backports.
 export DEBIAN_CODENAME=$( . /etc/os-release && echo $VERSION_CODENAME )
 echo "deb http://deb.debian.org/debian ${DEBIAN_CODENAME}-backports main" | sudo tee /etc/apt/sources.list.d/${DEBIAN_CODENAME}-backports.list
 
-# Update yadm repo origin URL
+# Update yadm repo origin URL.
 yadm remote set-url origin "git@github.com:sleeping-miyagi/dotfiles.git"
 
-# Install window manager, sound server, display server
+# Install window manager, sound server, display server.
 sudo apt update
 sudo apt upgrade
 sudo apt install xinit pipewire i3 -y
 
-# Install fonts
-sudo apt install fonts-noto fonts-fantasque-sans
+# Install fonts.
+sudo apt install fonts-noto fonts-fantasque-sans fonts-liberation2 -y
 
-# Install background services
-sudo apt install dex dunst feh -y
+# Install background services.
+sudo apt install dex dunst feh lxpolkit -y
 
-# Install additional system utilities
-sudo apt install pavucontrol arandr xclip htop neofetch -y
+# Install additional system utilities.
+sudo apt install pavucontrol arandr xclip maim htop neofetch -y
 
-# Install apps and programs
-sudo apt install vim chromium webext-ublock-origin-chromium  nnn sxiv zathura xournal mpv yt-dlp/${DEBIAN_CODENAME}-backports mutt-wizard -y
+# Install flatpak and flatpak repo
+sudo apt install flatpak
+flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 
-# Build custom st
+# Install apps and programs.
+sudo apt install pass vim chromium webext-ublock-origin-chromium nnn sxiv zathura xournal mpv yt-dlp/${DEBIAN_CODENAME}-backports ytfzf mutt-wizard pandoc texlive-xetex y
+
+# Build and install custom st.
 sudo apt install libharfbuzz-dev libxft-dev libxext-dev build-essential -y
 git clone https://github.com/sleeping-miyagi/st
 cd st
@@ -35,10 +39,21 @@ sudo make install
 cd ..
 rm -rf st
 
-# Build custom dmenu
+# Build and install custom dmenu.
 sudo apt install libxinerama-dev -y
 git clone https://github.com/sleeping-miyagi/dmenu
 cd dmenu
 sudo make install
 cd ..
 rm -rf dmenu
+
+# Build and install pam_gnupg
+sudo apt install automake libtool libpam0g-dev
+git clone https://github.com/cruegge/pam-gnupg
+cd pam-gnupg
+./autogen.sh
+./configure
+make
+sudo make install
+cd ..
+rm -rf pam-gnupg
