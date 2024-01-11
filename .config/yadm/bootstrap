@@ -37,7 +37,7 @@ sudo apt install flatpak
 flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 
 # Install apps and programs.
-sudo apt install pass vim firefox-esr webext-ublock-origin-firefox nnn sxiv zathura xournal mpv yt-dlp/${DEBIAN_CODENAME}-backports ytfzf mutt-wizard pandoc texlive-xetex cmus gcal qalc -y
+sudo apt install pass vim firefox-esr webext-ublock-origin-firefox torbrowser-launcher nnn sxiv zathura xournal mpv yt-dlp/${DEBIAN_CODENAME}-backports ytfzf mutt-wizard pandoc texlive-xetex cmus gcal qalc -y
 
 # Build and install custom st.
 sudo apt install libharfbuzz-dev libxft-dev libxext-dev build-essential -y
@@ -54,31 +54,6 @@ cd dmenu
 sudo make install
 cd ..
 rm -rf dmenu
-
-# Build and install pam_gnupg
-sudo apt install automake libtool libpam0g-dev -y
-git clone https://github.com/cruegge/pam-gnupg
-cd pam-gnupg
-./autogen.sh
-./configure
-make
-sudo make install
-cd ..
-rm -rf pam-gnupg
-
-PAMDLOGIN="/etc/pam.d/login"
-PAMGNUPGLINE1="auth     optional  pam_gnupg.so store-only"
-PAMGNUPGLINE2="session  optional  pam_gnupg.so"
-
-if ! grep -Fxq "$PAMGNUPGLINE1" $PAMDLOGIN
-then
-    echo "$PAMGNUPGLINE1" | sudo tee -a $PAMDLOGIN
-fi
-
-if ! grep -Fxq "$PAMGNUPGLINE2" $PAMDLOGIN
-then
-    echo "$PAMGNUPGLINE2" | sudo tee -a $PAMDLOGIN
-fi
 
 # Set dark mode (GTK)
 sudo apt install dconf-cli
