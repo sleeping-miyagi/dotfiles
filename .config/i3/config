@@ -231,6 +231,7 @@ exec --no-startup-id feh --no-fehbg --bg-fill ~/pictures/wp/default.png
 exec --no-startup-id fcitx5 -d
 exec --no-startup-id lxpolkit
 exec --no-startup-id dunst
+exec --no-startup-id xeventbind resolution ~/pictures/wp/resize_wallpaper.sh
 
 # keybindings
 bindsym Print exec --no-startup-id maim -m 10 --format=webp ~/pictures/screenshots/$(date '+%Y-%m-%d_%H-%M-%S').webp

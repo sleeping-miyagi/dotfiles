@@ -9,9 +9,7 @@
 export PS1="\[\033[1;38;5;2m\]\u@\h\[\033[0m\]:\[\033[1;38;5;4m\]\w\[\033[0m\]$ "
 
 # nnn config
-
 ## cd on quit (https://github.com/jarun/nnn/blob/master/misc/quitcd/quitcd.bash_sh_zsh)
-
 n ()
 {
     # Block nesting of nnn in subshells
@@ -52,22 +50,20 @@ nnn_cd()
 
 trap nnn_cd EXIT
 
+## enable trash
+export NNN_TRASH=1
 
 ## shell depth indicator (https://github.com/jarun/nnn/wiki/Basic-use-cases#shell-depth-indicator)
-
 [ -n "$NNNLVL" ] && PS1="N$NNNLVL $PS1"
 
 ## plugins
-
 export NNN_PLUG="u:getplugs;m:nmount;c:fixname;x:xdgdefault"
 
 # environment variables
-
 export EDITOR="vim"
 export BROWSER="chromium"
 
 # aliases
-
 alias q="exit"
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
