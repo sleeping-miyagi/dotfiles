@@ -70,6 +70,7 @@ alias grep='grep --color=auto'
 alias todo='vim ~/documents/todo'
 alias draft="vim /tmp/draft.md"
 alias cal='gcal'
+alias mutt='neomutt'
 
 # run pfetch
 #PF_INFO="ascii title os kernel uptime pkgs shell wm" pfetch

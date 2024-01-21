@@ -30,14 +30,14 @@ sudo apt install fonts-noto fonts-fantasque-sans fonts-liberation2 -y
 sudo apt install dex dunst feh xsettingsd gnome-themes-extra lxpolkit -y
 
 # Install additional system utilities.
-sudo apt install pavucontrol arandr xclip maim htop neofetch rclone fcitx5 fcitx5-mozc trash-cli ncdu xdotool -y
+sudo apt install pmount udisks2 pavucontrol arandr xclip maim htop neofetch rclone fcitx5 fcitx5-mozc trash-cli ncdu xdotool whois -y
 
 # Install flatpak and flatpak repo
 sudo apt install flatpak
 flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 
 # Install apps and programs.
-sudo apt install pass vim chromium torbrowser-launcher nnn sxiv zathura xournal mpv yt-dlp/${DEBIAN_CODENAME}-backports ytfzf mutt-wizard pandoc texlive-xetex cmus gcal qalc -y
+sudo apt install pass vim-gtk3 chromium torbrowser-launcher nnn sxiv zathura xournal mpv yt-dlp/${DEBIAN_CODENAME}-backports ytfzf mutt-wizard pandoc texlive-xetex libreoffice cmus gcal qalc gimp -y
 
 # Build and install custom st.
 sudo apt install libharfbuzz-dev libxft-dev libxext-dev build-essential -y
@@ -55,13 +55,22 @@ sudo make install
 cd ..
 rm -rf dmenu
 
-# Build and install xeventbind (automatic wallpaper resizing)
+# Build and install xeventbind (for automatic wallpaper resizing)
 git clone https://github.com/ritave/xeventbind
 cd xeventbind
 sudo make install
 cd ..
 rm -rf xeventbind
 
+# Install pandoc-crossref
+wget https://github.com/lierdakil/pandoc-crossref/releases/download/v0.3.12.2a/pandoc-crossref-Linux.tar.xz
+tar -xf pandoc-crossref-Linux.tar.xz
+sudo mv pandoc-crossref /usr/local/bin/
+rm -rf pandoc-crossref-Linux.tar.xz && rm -rf pandoc-crossref.1
+
 # Set dark mode (GTK)
 sudo apt install dconf-cli
 dconf write /org/gnome/desktop/interface/color-scheme \'prefer-dark\'
+
+# Install nnn plugins
+sh -c "$(curl -Ls https://raw.githubusercontent.com/jarun/nnn/master/plugins/getplugs)"
