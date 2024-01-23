@@ -27,10 +27,10 @@ sudo apt install xinit x11-apps pipewire i3 open-vm-tools-desktop -y
 sudo apt install fonts-noto fonts-fantasque-sans fonts-liberation2 -y
 
 # Install background services.
-sudo apt install dex dunst feh xsettingsd gnome-themes-extra lxpolkit -y
+sudo apt install syncthing dex dunst feh xsettingsd gnome-themes-extra lxpolkit -y
 
 # Install additional system utilities.
-sudo apt install pmount udisks2 pavucontrol arandr xclip maim htop neofetch rclone fcitx5 fcitx5-mozc trash-cli ncdu xdotool whois -y
+sudo apt install exiftool pmount udisks2 pavucontrol arandr xclip maim htop neofetch rclone fcitx5 fcitx5-mozc trash-cli ncdu xdotool whois -y
 
 # Install flatpak and flatpak repo
 sudo apt install flatpak
@@ -62,6 +62,31 @@ sudo make install
 cd ..
 rm -rf xeventbind
 
+# Build and install pam_gnupg
+sudo apt install automake libtool libpam0g-dev -y
+git clone https://github.com/cruegge/pam-gnupg
+cd pam-gnupg
+./autogen.sh
+./configure
+make
+sudo make install
+cd ..
+rm -rf pam-gnupg
+
+PAMDLOGIN="/etc/pam.d/login"
+PAMGNUPGLINE1="auth     optional  pam_gnupg.so store-only"
+PAMGNUPGLINE2="session  optional  pam_gnupg.so"
+
+if ! grep -Fxq "$PAMGNUPGLINE1" $PAMDLOGIN
+then
+    echo "$PAMGNUPGLINE1" | sudo tee -a $PAMDLOGIN
+fi
+
+if ! grep -Fxq "$PAMGNUPGLINE2" $PAMDLOGIN
+then
+    echo "$PAMGNUPGLINE2" | sudo tee -a $PAMDLOGIN
+fi
+
 # Install pandoc-crossref
 wget https://github.com/lierdakil/pandoc-crossref/releases/download/v0.3.12.2a/pandoc-crossref-Linux.tar.xz
 tar -xf pandoc-crossref-Linux.tar.xz
@@ -71,6 +96,8 @@ rm -rf pandoc-crossref-Linux.tar.xz && rm -rf pandoc-crossref.1
 # Set dark mode (GTK)
 sudo apt install dconf-cli
 dconf write /org/gnome/desktop/interface/color-scheme \'prefer-dark\'
+
+
 
 # Install nnn plugins
 sh -c "$(curl -Ls https://raw.githubusercontent.com/jarun/nnn/master/plugins/getplugs)"
