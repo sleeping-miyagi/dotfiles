@@ -39,6 +39,23 @@ flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.f
 # Install apps and programs.
 sudo apt install pass vim-gtk3 chromium torbrowser-launcher nnn sxiv zathura xournal mpv yt-dlp/${DEBIAN_CODENAME}-backports ytfzf mutt-wizard pandoc texlive-xetex libreoffice cmus gcal qalc gimp -y
 
+# Enable unattended upgrades
+sudo apt install unattended-upgrades
+echo unattended-upgrades unattended-upgrades/enable_auto_updates boolean true | sudo debconf-set-selections
+sudo dpkg-reconfigure -f noninteractive unattended-upgrades
+
+# Add Firefox repository and install Firefox
+wget -q https://packages.mozilla.org/apt/repo-signing-key.gpg -O- | sudo tee /etc/apt/keyrings/packages.mozilla.org.asc > /dev/null
+gpg -n -q --import --import-options import-show /etc/apt/keyrings/packages.mozilla.org.asc | awk '/pub/{getline; gsub(/^ +| +$/,""); print "\n"$0"\n"}'
+sudo rm -rf /etc/apt/sources.list.d/mozilla.list /etc/apt/preferences.d/mozilla
+echo "deb [signed-by=/etc/apt/keyrings/packages.mozilla.org.asc] https://packages.mozilla.org/apt mozilla main" | sudo tee -a /etc/apt/sources.list.d/mozilla.list > /dev/null
+echo '
+Package: *
+Pin: origin packages.mozilla.org
+Pin-Priority: 1000
+' | sudo tee /etc/apt/preferences.d/mozilla 
+sudo apt-get update && sudo apt-get install firefox
+
 # Build and install custom st.
 sudo apt install libharfbuzz-dev libxft-dev libxext-dev build-essential -y
 git clone https://github.com/sleeping-miyagi/st
@@ -96,7 +113,6 @@ rm -rf pandoc-crossref-Linux.tar.xz && rm -rf pandoc-crossref.1
 # Set dark mode (GTK)
 sudo apt install dconf-cli
 dconf write /org/gnome/desktop/interface/color-scheme \'prefer-dark\'
-
 
 
 # Install nnn plugins

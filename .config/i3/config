@@ -232,6 +232,7 @@ exec --no-startup-id fcitx5 -d
 exec --no-startup-id lxpolkit
 exec --no-startup-id dunst
 exec --no-startup-id xeventbind resolution ~/pictures/wp/resize_wallpaper.sh
+exec --no-startup-id syncthing serve --no-browser
 
 # keybindings
 bindsym Print exec --no-startup-id maim -m 10 --format=webp ~/pictures/screenshots/$(date '+%Y-%m-%d_%H-%M-%S').webp
